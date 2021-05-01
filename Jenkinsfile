@@ -15,17 +15,12 @@ pipeline {
         }
         stage ("deploy redis") {
             steps {
-                sh 'docker run --network build -d -p 6379:6379 redis'
-            }
-        }
-        stage ("get books urls") {
-            steps {
-                sh 'sh getbook.sh'
+                sh 'docker run --network build -d redis'
             }
         }
         stage ("to words!") {
             steps {
-                sh 'docker run --name towords --network build towords $(cat url.txt)'
+                sh 'docker run --name towords --network build towords'
             }
         }
     }
