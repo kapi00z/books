@@ -27,7 +27,7 @@ pipeline {
         stage ("get files!") {
             steps {
                 sh 'docker run --name getpairs -i --network build -v $PWD/src:/app/src getpairs'
-                sh 'ls /app/src'
+                sh 'ls $PWD/src'
             }
         }
     }
