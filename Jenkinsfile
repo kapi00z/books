@@ -20,8 +20,8 @@ pipeline {
         }
         stage ("to words!") {
             steps {
-                sh 'docker run --name towords -it --network build towords'
-                sh 'docker run --network build --rm redis redis-cli -h redis keys \'*\''
+                sh 'docker run --name towords -i --network build towords'
+                sh 'docker run --network build -i --rm redis redis-cli -h redis keys \'*\''
             }
         }
     }
