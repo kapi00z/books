@@ -32,7 +32,7 @@ pipeline {
         stage ("start web!") {
             steps {
                 sh 'docker run --name web -d --network build -v $PWD/src:/app/src web'
-                sh 'docker run --rm -i --network build alpine apk add curl; curl localhost:3000/words'
+                sh 'docker run --rm -i --network build alpine apk add curl; curl web:3000/words'
             }
         }
     }
