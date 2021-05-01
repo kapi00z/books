@@ -46,7 +46,7 @@ pipeline {
     post {
         always {
             sh 'docker rm -f $(docker ps -aq) || true'
-            sh 'docker image rm getpairs towords web test'
+            //sh 'docker image rm getpairs towords web test'
             sh 'docker network rm build'
         }
     }
