@@ -19,9 +19,9 @@ def getBook(url):
     req = requests.get(url)
     book = req.text.replace('\n', '').replace('\r', '').lower()
     book = re.sub(r'\W+', ' ', book)
-    red = redis.Redis(host='192.168.1.206', port=6379, db=0, decode_responses=True)
+    red = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
     logging.info("Connecting to redis")
-    for word in book.split():
+    for word in book.split()[:1000]:
         red.incr(word)
     logging.info("%s is done", url)
 

@@ -6,7 +6,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath('.')) + '/books'
 
 def getKeys():
     keyArr = []
-    red = redis.Redis(host='192.168.1.206', port=6379, db=0, decode_responses=True)
+    red = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
     for key in red.keys('*'):
         value = red.get(key)
         pair = {key : value}
