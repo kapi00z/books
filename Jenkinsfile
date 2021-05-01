@@ -13,7 +13,7 @@ pipeline {
     }
     post {
         always {
-            sh 'docker rm -f $(docker ps -aq)'
+            sh 'docker rm -f $(docker ps -aq) || true'
         }
     }
 }
