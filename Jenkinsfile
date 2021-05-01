@@ -3,17 +3,30 @@ pipeline {
         label "docker-agent"
     }
     stages {
-        stage ("test") {
+        stage ("build") {
             steps {
-                sh 'ls'
-                sh 'pwd'
-                sh 'docker version'
+                sh '''
+                    docker build -t getpairs getpairs
+                    docker build -t towords towords
+                    docker build -t web web
+                    '''
+            }
+        }
+        stage ("deploy redis") {
+            steps {
+                sh 'docker run -d -p 6379:6379 redis'
+            }
+        }
+        stage ("get books urls") {
+            steps {
+                sh 'bash getbook.sh'
             }
         }
     }
     post {
         always {
             sh 'docker rm -f $(docker ps -aq) || true'
+            sh 'docker image rm getpairs towords web'
         }
     }
 }
