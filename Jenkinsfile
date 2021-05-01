@@ -24,6 +24,12 @@ pipeline {
                 sh 'docker run --network build -i --rm redis redis-cli -h redis keys \'*\''
             }
         }
+        stage ("get files!") {
+            steps {
+                sh 'docker run --name getpairs -i --network build -v $PWD/src:/app/src getpairs'
+                sh 'ls src'
+            }
+        }
     }
     post {
         always {

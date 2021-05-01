@@ -1,5 +1,6 @@
 FROM python:alpine
-WORKDIR /src
+WORKDIR /app
+RUN mkdir /src
 
 COPY . .
 
