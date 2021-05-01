@@ -6,4 +6,4 @@ COPY . .
 
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
-CMD ["python3", "towords.py", "$(echo $(sh ./getbooks.sh))"]
+CMD python3 towords.py $(echo $(sh ./getbooks.sh))
