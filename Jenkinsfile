@@ -15,7 +15,7 @@ pipeline {
         }
         stage ("deploy redis") {
             steps {
-                sh 'docker run --network build -d redis'
+                sh 'docker run --name --network build -d redis'
             }
         }
         stage ("to words!") {
