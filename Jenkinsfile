@@ -26,9 +26,13 @@ pipeline {
         }
         stage ("get files!") {
             steps {
-                sh 'mkdir $PWD/src'
                 sh 'docker run --name getpairs -i --network build -v $PWD/src:/app/src getpairs'
-                sh 'ls $PWD/src'
+            }
+        }
+        stage ("start web!") {
+            steps {
+                sh 'docker run --name web -d --network build -v $PWD/src:/app/src web'
+                sh 'curl localhost:3000'
             }
         }
     }

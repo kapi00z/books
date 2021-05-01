@@ -2,7 +2,8 @@ from flask import Flask, send_from_directory
 import requests, json
 import os
 
-ROOT_DIR = os.path.dirname(os.path.abspath('.')) + '/books'
+#ROOT_DIR = os.path.dirname(os.path.abspath('.')) + '/books'
+ROOT_DIR = '/app'
 
 app = Flask(__name__, static_url_path='')
 
