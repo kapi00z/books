@@ -9,6 +9,7 @@ pipeline {
                     docker build -t getpairs getpairs
                     docker build -t towords towords
                     docker build -t web web
+                    docker build -t test test
                     docker network create build
                     '''
             }
@@ -32,14 +33,20 @@ pipeline {
         stage ("start web!") {
             steps {
                 sh 'docker run --name web -d --network build -v $PWD/src:/app/src web'
-                sh 'docker run --rm -i --network build alpine apk add curl; curl web:3000/words'
+            }
+        }
+        stage ("test web!") {
+            steps {
+                sh 'docker run --rm --network build -i test curl web:3000/words'
+                sh 'docker run --rm --network build -i test curl web:3000/pairs'
+                sh 'docker run --rm --network build -i test curl web:3000/json'
             }
         }
     }
     post {
         always {
             sh 'docker rm -f $(docker ps -aq) || true'
-            sh 'docker image rm getpairs towords web'
+            sh 'docker image rm getpairs towords web test'
             sh 'docker network rm build'
         }
     }
