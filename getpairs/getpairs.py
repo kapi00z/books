@@ -2,7 +2,8 @@ import redis
 import json
 import os
 
-ROOT_DIR = os.path.dirname(os.path.abspath('.')) + '/books'
+#ROOT_DIR = os.path.dirname(os.path.abspath('.')) + '/books'
+ROOT_DIR = '/app'
 
 def getKeys():
     keyArr = []
