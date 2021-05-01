@@ -1,5 +1,5 @@
 from flask import Flask, send_from_directory
-import requests, json
+import requests
 import os
 
 #ROOT_DIR = os.path.dirname(os.path.abspath('.')) + '/books'
